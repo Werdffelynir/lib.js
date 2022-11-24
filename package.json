@@ -1,0 +1,24 @@
+{
+  "name": "lib.js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development --config webpack.config.js",
+    "build": "webpack --mode production --config webpack.config.js",
+    "watch_dev": "npm run build && webpack --watch --info-verbosity verbose --mode development --config webpack.config.dev.js",
+    "watch": "webpack --watch --info-verbosity verbose --mode development --config webpack.config.js",
+    "start": "webpack --watch"
+  },
+  "devDependencies": {
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.10"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "author": "Werdffelynir",
+  "license": "ISC"
+}
