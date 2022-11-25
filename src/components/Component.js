@@ -309,6 +309,7 @@ const Component = function (config) {
 
             }
         };
+        comp.update = comp.updateTemplateDataElements;
 
         function onComplete() {
             comp.completed = true;

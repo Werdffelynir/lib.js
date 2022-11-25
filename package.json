@@ -10,6 +10,9 @@
     "watch": "webpack --watch --info-verbosity verbose --mode development --config webpack.config.js",
     "start": "webpack --watch"
   },
+  "dependencies": {
+    "lib.js": "github:Werdffelynir/lib.js#main"
+  },
   "devDependencies": {
     "fs": "0.0.1-security",
     "path": "^0.12.7",
