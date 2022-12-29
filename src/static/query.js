@@ -8,7 +8,7 @@ import queryAll from './queryAll';
  * @param thisInstance
  * @returns {Node|boolean}
  */
-const query = function (selector, from, callback, thisInstance) {
+const query = function (selector, from = null, callback = null, thisInstance = null) {
     const elements = queryAll(selector, from, callback, thisInstance);
     return elements && elements[0] ? elements[0] : false;
 };

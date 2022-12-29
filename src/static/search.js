@@ -20,23 +20,30 @@ import query from './query';
  * @param selector
  * @param attr
  * @param from
+ * @param stacked
  * @return {{}}
  */
-const search = function (selector, attr, from) {
+const search = function (selector, attr, from, stacked = false) {
     from = isNode(from) ? from : query(from);
     let i = 0,
         key,
         elements = {},
-        queryElements = queryAll(selector, from || document.body);
+        query_elements = queryAll(selector, from || document.body);
 
-    if (queryElements) {
-        while (i < queryElements.length) {
+    if (query_elements) {
+        while (i < query_elements.length) {
             if (!attr)
-                elements[i] = queryElements[i];
+                elements[i] = query_elements[i];
             else {
-                if (queryElements[i].hasAttribute(attr)) {
-                    key = queryElements[i].getAttribute(attr);
-                    elements[key] = queryElements[i];
+                if (query_elements[i].hasAttribute(attr)) {
+                    key = query_elements[i].getAttribute(attr);
+
+                    if (stacked && elements[key])
+                        Array.isArray(elements[key])
+                            ? elements[key].push(query_elements[i])
+                            : elements[key] = [elements[key], query_elements[i]];
+                    else
+                        elements[key] = query_elements[i];
                 }
             }
             i++;

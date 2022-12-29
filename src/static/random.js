@@ -4,7 +4,7 @@
  * @param max
  * @returns {number}
  */
-import {ABC, NUMBERS} from "./abc";
+import {ABC, LETTER_CONSONANT, LETTER_VOWEL, NUMBERS} from "./abc";
 
 
 export const random = function (min, max) {
@@ -12,6 +12,7 @@ export const random = function (min, max) {
     max = max || 100;
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
+
 
 /**
  * Generate a random hex color
@@ -25,6 +26,7 @@ export const randomColor = function () {
     return color;
 };
 random.color = randomColor;
+
 
 /**
  *
@@ -43,21 +45,58 @@ export const randomNumber = function (size = 6) {
 };
 random.number = randomNumber;
 
+
 /**
  *
  * @param size
  * @returns {string}
  */
 export const randomString = function (size = 6) {
-    let i, string = '';
-    const abs = (ABC + NUMBERS).toLowerCase().split('');
-    for (i = size; i > 0; i--) {
-        string +=
-            abs[Math.floor(Math.random() * abs.length)];
+    let string = '';
+    const abs = (ABC + NUMBERS).toLowerCase().split(',');
+
+    const rand = () => {
+        let i, string = '';
+
+        for (i = size; i > 0; i--) {
+            string += abs[Math.floor(Math.random() * abs.length)];
+        }
+
+        return string;
     }
+    string += rand();
+
     return string;
 };
 random.string = randomString;
+
+
+/**
+ *
+ * @param size
+ * @returns {string}
+ */
+export const randomStringHumans = function (size = 6) {
+    let string = '';
+    const bin = (balance = 0) => !!Math.random() > (0.45 - (balance / 100));
+    const r_consonants = () => {
+        const lets = LETTER_CONSONANT.toLowerCase().split(',');
+        return lets[Math.floor(Math.random() * lets.length)];}
+    const r_vowels = () => {
+        const lets = LETTER_VOWEL.toLowerCase().split(',');
+        return lets[Math.floor(Math.random() * lets.length)];}
+
+    Array(Math.round((size / 2) + 1)).fill(0).forEach(() => {
+        string += r_consonants() + (bin(30) ? r_vowels() : '') + r_vowels();
+    });
+
+    if (bin())
+        return string.slice(1, size + 1);
+    else
+        return string.slice(0, size);
+};
+random.string = randomStringHumans;
+
 
 /**
  * Return random item from array
