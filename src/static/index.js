@@ -23,8 +23,7 @@ import extend, {
     extendRecursive
 }  from "../static/extend";
 import isEmpty from "../static/isEmpty";
-import findObject from "../static/findObject";
-import findObjects from "../static/findObjects";
+import finds from "../static/find";
 import format from "../static/format";
 import isNode from "../static/isNode";
 import loadCSS from "../static/loadCSS";
@@ -69,6 +68,9 @@ import toCamelCase from "../static/toCamelCase";
 import hasLowerCase from "../static/hasLowerCase";
 import toMinusCase from "../static/toMinusCase";
 import addCss from "./cssInject";
+
+const findObject = finds.one;
+const findObjects = finds.many;
 
 const Static = {
     abc,

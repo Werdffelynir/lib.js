@@ -1,24 +1,43 @@
-const fs = require('fs');
 const path = require('path');
 const process = require('process');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-
 module.exports = {
-    entry: './src/index.js',
-    devtool: isDevelopment ? 'source-map' : 'hidden-source-map',
+    mode: isDevelopment ? 'development' : 'production',
+
+    // context: path.resolve(__dirname, 'src'),
+
+    entry: {
+        index: path.resolve(__dirname, './src/index.js'),
+    },
+
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: '[name].js'
+        path: path.resolve(__dirname, './dist'),
+        filename: '[name].bundle.js',
     },
+
+    devServer: {
+        historyApiFallback: true,
+        static: path.resolve(__dirname, './dist'),
+        open: true,
+        compress: true,
+        hot: true,
+        port: 8080,
+    },
+
+    plugins: [
+
+    ],
+
     module: {
-        rules: []
-    },
-
-    resolve: {
-        extensions: ['.js', '.jsx']
-    },
-
-    plugins: []
+        rules: [
+            // JavaScript
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: ['babel-loader'],
+            },
+        ],
+    }
 };

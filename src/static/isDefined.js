@@ -1,6 +1,6 @@
 
-const isDefined = function (src) {
-    return src !== undefined;
+const isDefined = function (value) {
+    return value !== undefined;
 };
 
 export default isDefined;

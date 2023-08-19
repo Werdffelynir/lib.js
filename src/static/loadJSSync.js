@@ -6,14 +6,14 @@ import createElement from "./createElement";
  * Loads a script element with javascript source
  *
  * .loadJSSync ( {
- *      myscript1: '/path/to/myscript1',
- *      myscript2: '/path/to/myscript2',
+ *      myscript1: '/path/to/myscript1.js',
+ *      myscript2: '/path/to/myscript2.js',
  *    },
  *    function (list) {})
  *
  * .loadJSSync ( [
- *      '/path/to/myscript1',
- *      '/path/to/myscript2',
+ *      '/path/to/myscript1.js',
+ *      '/path/to/myscript2.js',
  *    ],
  *    function (list) {})
  *

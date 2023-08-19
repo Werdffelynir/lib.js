@@ -1,8 +1,12 @@
 /**
+ * Examples:
  *
- * @param {object|array} list
- * @param {string|number} attr
- * @param {*} attrValue
+ * finds(someObject, 'id', 1550)
+ * finds(someObject, 'name', 'Johan')
+ *
+ * @param list
+ * @param attr
+ * @param attrValue
  * @returns {*[]}
  */
 const finds = function (list, attr, attrValue) {

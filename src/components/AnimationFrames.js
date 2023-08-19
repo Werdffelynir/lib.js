@@ -12,11 +12,15 @@ import isString from "../static/isString";
  *
  * Anim.i                               // iteration of global frames
  * Anim.frame({...})                    // add new animation scene
+ *
  * Anim.start()                         // start play
+ *
  * Anim.stop()                          // set pause, stop play
+ *
  * Anim.next()                          // force play next one frames stack
- * Anim.before([callback])              // call before main frames, pause not accept
- * Anim.after([callback])               // call after main frames, pause not accept
+ *
+ * Anim.before([callback])              // call before main frame played, pause not accept
+ * Anim.after([callback])               // call after main frame played, pause not accept
  *
  * Anim.frame(function (af) {
  *     // this === af
@@ -89,10 +93,6 @@ const AnimationFrames = function (params = {}) {
         if (!this.hasOwnProperty(key)) this[key] = params[key];
     });
 
-    // if (!this.paused) {
-    //     this.start();
-    // }
-
     this.drawAnimationFrames = function () {
         if (this.canceled) return;
 
@@ -146,6 +146,21 @@ const AnimationFrames = function (params = {}) {
     this.pause = function () {
         this.paused = !this.paused;
     };
+
+    /* todo: ticks for testing */
+    this._callbacks_ticks = []
+    this.tick = function (callback) {
+        if (callback instanceof Function)
+            this._callbacks_ticks.push(callback);
+    };
+    this._call_callbacks_ticks = function (frame) {
+        let that = this;
+        this._callbacks_ticks.forEach((callback) => {
+            if (callback instanceof Function)
+                callback.call(frame, that);
+        })
+    };
+
     this.start = function () {
         this.paused = false;
 
@@ -169,6 +184,10 @@ const AnimationFrames = function (params = {}) {
         this._callbacks_frames_stack[frame.id] = frame;
         return frame.id;
     };
+
+    if (!this.paused) {
+        this.start();
+    }
 }
 
 AnimationFrames.timeout = 1000;

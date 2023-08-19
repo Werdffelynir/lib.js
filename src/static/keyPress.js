@@ -145,5 +145,38 @@ keyPress._global_event_key_press_listener = function () {
     });
 }
 
+/*
+pressed key "d"
+KeyboardEvent:
+    isTrusted: true
+    altKey: false
+    bubbles: true
+    cancelBubble: false
+    cancelable: true
+    charCode: 0
+    code: "KeyD"
+    composed: true
+    ctrlKey: false
+    currentTarget: null
+    defaultPrevented: false
+    detail: 0
+    eventPhase: 0
+    isComposing: false
+    key: "d"
+    keyCode: 68
+    location: 0
+    metaKey: false
+    repeat: false
+    returnValue: true
+    shiftKey: false
+    sourceCapabilities: InputDeviceCapabilities {firesTouchEvents: false}
+    srcElement: input#question_area
+    target: input#question_area
+    timeStamp: 2190.899999999907
+    type: "keydown"
+    view: Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+    which: 68
+
+*/
 
 export default keyPress;

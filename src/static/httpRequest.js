@@ -1,7 +1,7 @@
 import typeOf from "./typeOf";
 
 /**
- * Base HTTP Request
+ * Base HTTP Request...
  *
  * httpRequest( { url: '/index' }, function(status, data){}, thisInstance );
  *
@@ -126,4 +126,71 @@ const httpRequest = function (config, callback, thisInstance) {
     return xhr;
 };
 
+httpRequest.fetch = await function (callback) {
+    async function fetchAsync (url) {
+        let response = await fetch(url);
+        let jsonData = await response.json();
+        if (callback instanceof Function)
+            callback.call(response, response, jsonData);
+        return jsonData;
+    }
+};
+/*
+
+    // Create request object
+    var request = new Request('https://example.com/api/...',
+         { method: 'POST',
+           body: {'name': 'Klaus'},
+           headers: new Headers({ 'Content-Type': 'application/json' })
+         });
+    // Now use it!
+
+   fetch(request)
+   .then(resp => {
+         // handle response
+   })
+   .catch(err => {
+         // handle errors
+    });
+
+
+
+// MOST SIMPLE ONE
+function makeRequest1() {
+    fetch(URLAPI)
+        .then(response => response.json()).then( json => setData(json))
+        .catch(error => console.error(error))
+        .finally(() => {
+            console.log("Data received 1 --> ", data);
+            data = null;
+    });
+}
+
+// ASYNC FUNCTIONS
+function makeRequest2() {
+    fetch(URLAPI)
+        .then(async response => await response.json()).then(async json => await setData(json))
+        .catch(error => console.error(error))
+        .finally(() => {
+            console.log("Data received 2 --> ", data);
+            data = null;
+        });
+}
+function makeRequest3() {
+    fetch(URLAPI)
+        .then(async response => await response.json()).then(json => setData(json))
+        .catch(error => console.error(error))
+        .finally(() => {
+            console.log("Data received 3 --> ", data);
+            data = null;
+        });
+}
+// Better Promise usages
+function makeRequest4() {
+    const response = Promise.resolve(fetch(URLAPI).then(response => response.json())).then(json => setData(json) ).finally(()=> {
+        console.log("Data received 4 --> ", data);
+
+    })
+}
+*/
 export default httpRequest;

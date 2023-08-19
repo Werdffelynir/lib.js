@@ -1,26 +1,27 @@
 {
-  "name": "lib.js",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "JSLib",
+  "version": "0.1.0",
+  "main": "webpack.config.js",
   "scripts": {
-    "dev": "webpack --mode development --config webpack.config.js",
-    "build": "webpack --mode production --config webpack.config.js",
-    "watch_dev": "npm run build && webpack --watch --info-verbosity verbose --mode development --config webpack.config.dev.js",
-    "watch": "webpack --watch --info-verbosity verbose --mode development --config webpack.config.js",
-    "start": "webpack --watch"
+    "build": "webpack --mode production",
+    "start": "webpack serve --mode development",
+    "phps": "php -S localhost:8013 -t ./dist"
+  },
+  "description": "",
+  "devDependencies": {
+    "@babel/core": "^7.22.10",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/preset-env": "^7.22.10",
+    "babel-loader": "^9.1.3",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "process": "^0.11.10",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
-    "lib.js": "github:Werdffelynir/lib.js#main"
-  },
-  "devDependencies": {
-    "fs": "0.0.1-security",
-    "path": "^0.12.7",
-    "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.10"
-  },
-  "directories": {
-    "test": "tests"
+    "libjs": "github:Werdffelynir/lib.js#main"
   },
   "author": "Werdffelynir",
   "license": "ISC"

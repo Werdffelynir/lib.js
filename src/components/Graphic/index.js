@@ -2,16 +2,6 @@ import Point from "./Point";
 import convertRGBtoHEX from "../../static/convertRGBtoHEX";
 
 /*
-font: caption;
-font: italic 1.2em "Fira Sans", serif;
-font: italic small-caps bold 16px/2 cursive;
-font: small-caps bold 24px/1 sans-serif;
-font: 12px/14px sans-serif;
-font: 80% sans-serif;
-font: bold italic large serif;
-font: status-bar;
-font: 'bold 20px "sans", "Ubuntu"'
-
 direction : "ltr"
 fillStyle : "#ff8c00"
 filter : "none"
@@ -38,7 +28,7 @@ textAlign : "left"
 textBaseline : "top"
 textRendering : "auto"
 wordSpacing : "0px"
- */
+*/
 const GraphicContextStyles = {
     direction : "ltr",
     fillStyle : "#ff8c00",
@@ -75,7 +65,6 @@ const GraphicContextStyles = {
  *          context: context,
  *          closePath: true,
  *          anticlockwise: true,
- *          closePath: true,
  *          styles: [GraphicContextStyles],
  *      })
  *
@@ -372,7 +361,7 @@ function Graphic(parameters = {}) {
         }
 
         if (asStroke) {
-            this.context.fillText(text, x, y);
+            this.context.strokeText(text, x, y);
         } else {
             this.context.fillText(text, x, y);
         }

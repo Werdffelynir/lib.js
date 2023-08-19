@@ -91,26 +91,27 @@ import Str from "./components/Str";
 import Storage from "./components/Storage";
 import Transform from "./components/Transform";
 
-export default {
+const LibJS = {
+
     // components
-    LibArr: Arr,
-    LibChain: Chain,
-    LibComponent: Component,
-    LibCookie: Cookie,
-    LibDatetime: Datetime,
-    LibDom: Dom,
-    LibKeyboardManager: KeyboardManager,
-    LibLoader: Loader,
-    LibRouter: Router,
-    LibRoxy: Roxy,
-    LibRoxyListener: RoxyListener,
-    LibStorage: Storage,
-    LibStr: Str,
-    LibTimer: Timer,
-    LibTransform: Transform,
+    Arr: Arr,
+    Chain: Chain,
+    Component: Component,
+    Cookie: Cookie,
+    Datetime: Datetime,
+    Dom: Dom,
+    KeyboardManager: KeyboardManager,
+    Loader: Loader,
+    Router: Router,
+    Roxy: Roxy,
+    RoxyListener: RoxyListener,
+    Storage: Storage,
+    Str: Str,
+    Timer: Timer,
+    Transform: Transform,
 
     // static
-    Lib: {
+    u: {
         abc: abc,
         clone: clone,
         convertHEXtoRGB: convertHEXtoRGB,
@@ -198,6 +199,9 @@ export default {
     },
 };
 
+window.LibJS = window.libjs = LibJS;
+
+export default LibJS;
 
 
 
