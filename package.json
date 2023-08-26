@@ -1,5 +1,5 @@
 {
-  "name": "JSLib",
+  "name": "jslib",
   "version": "0.1.0",
   "main": "webpack.config.js",
   "scripts": {
@@ -21,7 +21,6 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
-    "libjs": "github:Werdffelynir/lib.js#main"
   },
   "author": "Werdffelynir",
   "license": "ISC"

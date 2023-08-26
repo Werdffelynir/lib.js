@@ -90,6 +90,9 @@ import Dom from "./components/Dom";
 import Str from "./components/Str";
 import Storage from "./components/Storage";
 import Transform from "./components/Transform";
+import TemplateVariablesObserve from "./components/TemplateVariablesObserve";
+import HashRouter from "./components/HashRouter";
+import Waiter from "./components/Waiter";
 
 const LibJS = {
 
@@ -109,6 +112,9 @@ const LibJS = {
     Str: Str,
     Timer: Timer,
     Transform: Transform,
+    TemplateVariablesObserve: TemplateVariablesObserve,
+    HashRouter: HashRouter,
+    Waiter: Waiter,
 
     // static
     u: {

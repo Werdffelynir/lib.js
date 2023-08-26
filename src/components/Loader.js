@@ -5,6 +5,8 @@
  * Loader.images: ƒ (imgs, callback)
  * Loader.javascript: ƒ (src, callback, onerror)
  * Loader.json: ƒ (src, callback, onerror)
+ *
+ * @version 0.0.1 unstable
  * @property
  * @method json
  * @method jsons
@@ -106,7 +108,7 @@ Loader.javascript = function (srcs, callback, onerror)
             });
             srcs = obj;
         }
-
+        onerror = typeof onerror === 'function' ? onerror : (err) => {console.error(err)}
         const length = Object.keys(srcs).length;
         const scripts = {};
         let script;

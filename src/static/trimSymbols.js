@@ -1,4 +1,10 @@
-
+/**
+ *
+ * @version 0.0.1 stable
+ * @param str
+ * @param charlist
+ * @returns {string|string}
+ */
 const trimSymbols = function (str, charlist) {
     let whitespace = [
         ' ',
@@ -23,28 +29,28 @@ const trimSymbols = function (str, charlist) {
         '\u2028',
         '\u2029',
         '\u3000'
-    ].join('')
-    let l = 0
-    let i = 0
-    str += ''
+    ].join('');
+    let l = 0;
+    let i = 0;
+    str += '';
     if (charlist) {
-        whitespace = (charlist + '').replace(/([[\]().?/*{}+$^:])/g, '$1')
+        whitespace = (charlist + '').replace(/([[\]().?/*{}+$^:])/g, '$1');
     }
-    l = str.length
+    l = str.length;
     for (i = 0; i < l; i++) {
         if (whitespace.indexOf(str.charAt(i)) === -1) {
-            str = str.substring(i)
-            break
+            str = str.substring(i);
+            break;
         }
     }
-    l = str.length
+    l = str.length;
     for (i = l - 1; i >= 0; i--) {
         if (whitespace.indexOf(str.charAt(i)) === -1) {
-            str = str.substring(0, i + 1)
-            break
+            str = str.substring(0, i + 1);
+            break;
         }
     }
-    return whitespace.indexOf(str.charAt(0)) === -1 ? str : ''
+    return whitespace.indexOf(str.charAt(0)) === -1 ? str : '';
 }
 
 export default trimSymbols;

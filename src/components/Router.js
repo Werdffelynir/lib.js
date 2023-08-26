@@ -15,21 +15,21 @@ const Router = function (config)
     root.routes = config.routes ? config.routes : {};
     root.context = config.context ? config.context : {};
 
-    root.state = function (state, title, uri) {
-        state.uri = state.uri ? state.uri : uri;
-        state.title = state.title ? state.title : title;
+    root.state = function (stateObj, title, uri) {
+        stateObj.uri = stateObj.uri ? stateObj.uri : uri;
+        stateObj.title = stateObj.title ? stateObj.title : title;
         if (history.state.uri === uri) {
-            return history.replaceState(state, title, uri);
+            return history.replaceState(stateObj, title, uri);
         }
-        return history.pushState(state, title, uri);
+        return history.pushState(stateObj, title, uri);
     };
 
-    root.to = function (key, state) {
+    root.to = function (key, stateObj) {
         console.log('Router.to', key);
         if (typeof root.routes[key] === "function") {
 
-            if (state) {
-                root.state(state, state.title, state.uri);
+            if (stateObj) {
+                root.state(stateObj, stateObj.title, stateObj.uri);
             }
             root.routes[key].call(root, root.context);
         }

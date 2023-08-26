@@ -2,6 +2,7 @@ import merge from "../static/merge";
 
 /**
  *
+ * @version 0.0.1 unstable
  * @param configuration
  * @return {*|{init(), render(), configured: function(configuration: *), properties: function(properties: *), prop: function(name: string)}}
  * @constructor
