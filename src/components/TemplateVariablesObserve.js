@@ -22,12 +22,12 @@ import search from "libjs/src/static/search";
  *
  * // reserved attributes
  * data-on
- * data-get
- * data-set
+ * data-get     // not use
+ * data-set     // not use
  * data-input
+ * data-area
  * data-click   // not use
  * data-field   // not use
- * data-area    // not use
  *
  * // !important. Incorrect use of a variable in attributes
  * <input type="text" value="{columns}"> // this not work!
@@ -40,7 +40,7 @@ import search from "libjs/src/static/search";
  *
  * @param templateString string|Element
  * @param innerHTML bool
- * @returns {{template: Element, variable: {}|Proxy, attr: {input: {}, set: {}, get: {}, on: {}}, element: {}, observe: function}}
+ * @returns {{template: Element, variable: {}|Proxy, attr: {input: {}, area: {}, on: {}}, element: {}, observe: function}}
  * @constructor
  */
 function TemplateVariablesObserve(templateString, innerHTML = false) {
@@ -113,8 +113,7 @@ function TemplateVariablesObserve(templateString, innerHTML = false) {
     return {
         attr: {
             on: attrs(html, 'data-on'),
-            set: attrs(html, 'data-set'),
-            get: attrs(html, 'data-get'),
+            area: attrs(html, 'data-area'),
             input: attrs(html, 'data-input'),
         },
         template: html,
