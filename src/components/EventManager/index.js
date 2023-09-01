@@ -11,12 +11,13 @@ const EventManager = {
      * @param details
      * @returns {CustomEvent}
      */
-    addEvent: function(name, details) {
+    createEvent: function(name, details) {
         let key;
         const event = new CustomEvent(name, {detail: details});
         if (typeof details === 'object')
             for (key in details)
                 if (!event.hasOwnProperty(key)) event[key] = details[key];
+
         EventManager.eventFragment[name] = event;
         return this;
     },

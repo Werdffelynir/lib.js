@@ -106,15 +106,3 @@ Datetime.strToDate = function (date, format, utc) {
 };
 
 export default Datetime;
-
-/*
-export default {
-    MS_IN_DAY: Datetime.MS_IN_DAY,
-    MS_IN_HOUR: Datetime.MS_IN_HOUR,
-    MS_IN_MIN: Datetime.MS_IN_MIN,
-    time: Datetime.time,
-    addDays: Datetime.addDays,
-    betweenDates: Datetime.betweenDates,
-    strToDate: Datetime.strToDate,
-};
-*/

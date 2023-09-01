@@ -11,7 +11,7 @@ import search from "libjs/src/static/search";
  *          <div>{context}</div>
  *      </div>
  * `;
- * const tpl = TemplateVariablesObserve(template);
+ * const tpl = Template(template);
  *
  * tpl.observe('title', (name, value, state) => {
  *     console.log('changed', {name, value, state});
@@ -43,7 +43,7 @@ import search from "libjs/src/static/search";
  * @returns {{template: Element, variable: {}|Proxy, attr: {input: {}, area: {}, on: {}}, element: {}, observe: function}}
  * @constructor
  */
-function TemplateVariablesObserve(templateString, innerHTML = false) {
+function Template(templateString, innerHTML = false) {
     const variablesState = {};
     const variablesNames = [];
     const variablesElements = {};
@@ -123,4 +123,4 @@ function TemplateVariablesObserve(templateString, innerHTML = false) {
     };
 }
 
-export default TemplateVariablesObserve;
+export default Template;

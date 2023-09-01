@@ -1,5 +1,4 @@
 import Chain from "./components/Chain";
-import Component from "./components/Component";
 import Roxy from "./components/Roxy";
 import RoxyListener from "./components/RoxyListener";
 import Timer from "./components/Timer";
@@ -90,7 +89,7 @@ import Dom from "./components/Dom";
 import Str from "./components/Str";
 import Storage from "./components/Storage";
 import Transform from "./components/Transform";
-import TemplateVariablesObserve from "./components/TemplateVariablesObserve";
+import Template from "./components/Template";
 import HashRouter from "./components/HashRouter";
 import Waiter from "./components/Waiter";
 
@@ -99,7 +98,6 @@ const LibJS = {
     // components
     Arr: Arr,
     Chain: Chain,
-    Component: Component,
     Cookie: Cookie,
     Datetime: Datetime,
     Dom: Dom,
@@ -112,7 +110,7 @@ const LibJS = {
     Str: Str,
     Timer: Timer,
     Transform: Transform,
-    TemplateVariablesObserve: TemplateVariablesObserve,
+    Template: Template,
     HashRouter: HashRouter,
     Waiter: Waiter,
 
