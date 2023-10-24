@@ -1,6 +1,3 @@
-import search from "libjs/src/static/search";
-
-
 /**
  * <pre>
  * // !important. Only use variables between tags
