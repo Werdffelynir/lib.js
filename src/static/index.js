@@ -13,6 +13,7 @@ import node2str from "../static/node2str";
 import query from "../static/query";
 import queryAll from "../static/queryAll";
 import search from "../static/search";
+import searchAttr from "../static/searchAttr";
 import encodeGetQuery from "../static/encodeGetQuery";
 import decodeGetQuery from "../static/decodeGetQuery";
 import httpRequest from "../static/httpRequest";
@@ -54,8 +55,8 @@ import exists from "../static/exists";
 import isDefined from "../static/isDefined";
 import loadBlobfile from "../static/loadBlobfile";
 import loadJSON from "../static/loadJSON";
-import loadTextfile from "../static/loadTextfile";
-import toHTML from "../static/toHTML";
+// import loadTextfile from "../static/loadTextfile";
+// import toHTML from "../static/toHTML";
 import toXML from "../static/toXML";
 import stylizer from "../static/stylizer";
 import uniqArray from "../static/uniqArray";
@@ -68,9 +69,8 @@ import toCamelCase from "../static/toCamelCase";
 import hasLowerCase from "../static/hasLowerCase";
 import toMinusCase from "../static/toMinusCase";
 import addCss from "./cssInject";
+import request, {toQueryString}  from "./request";
 
-const findObject = finds.one;
-const findObjects = finds.many;
 
 const Static = {
     abc,
@@ -88,6 +88,7 @@ const Static = {
     query,
     queryAll,
     search,
+    searchAttr,
     encodeGetQuery,
     decodeGetQuery,
     httpRequest,
@@ -96,8 +97,8 @@ const Static = {
     extend,
     extendRecursive,
     each,
-    findObject,
-    findObjects,
+    find: finds.one,
+    finds: finds.many,
     format,
     isEmpty,
     isNode,
@@ -128,8 +129,8 @@ const Static = {
     isDefined,
     loadBlobfile,
     loadJSON,
-    loadTextfile,
-    toHTML,
+    // loadTextfile,
+    // toHTML,
     toXML,
     stylizer,
     uniqArray,
@@ -142,6 +143,8 @@ const Static = {
     hasLowerCase,
     toMinusCase,
     addCss,
+    request,
+    toQueryString,
 };
 
 export default Static;

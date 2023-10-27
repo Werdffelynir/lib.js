@@ -1,10 +1,3 @@
-import Chain from "./components/Chain";
-import Roxy from "./components/Roxy";
-import RoxyListener from "./components/RoxyListener";
-import Timer from "./components/Timer";
-import Router from "./components/Router";
-import KeyboardManager from "./components/KeyboardManager";
-import Loader from "./components/Loader";
 import abc from "./static/abc";
 import clone from "./static/clone";
 import convertHEXtoRGB from "./static/convertHEXtoRGB";
@@ -83,14 +76,22 @@ import createFragment from "./static/createFragment";
 import createElement from "./static/createElement";
 import cssInject from "./static/cssInject";
 import Arr from "./components/Arr";
+import Chain from "./components/Chain";
 import Cookie from "./components/Cookie";
 import Datetime from "./components/Datetime";
 import Dom from "./components/Dom";
+import HashRouter from "./components/HashRouter";
+import KeyboardManager from "./components/KeyboardManager";
+import Loader from "./components/Loader";
+import Router from "./components/Router";
+import Roxy from "./components/Roxy";
+import RoxyListener from "./components/RoxyListener";
+import Sprite from "./components/Graphic/Sprite";
 import Str from "./components/Str";
 import Storage from "./components/Storage";
+import Timer from "./components/Timer";
 import Transform from "./components/Transform";
 import Template from "./components/Template";
-import HashRouter from "./components/HashRouter";
 import Waiter from "./components/Waiter";
 
 const LibJS = {
@@ -113,6 +114,7 @@ const LibJS = {
     Template: Template,
     HashRouter: HashRouter,
     Waiter: Waiter,
+    Sprite: Sprite,
 
     // static
     u: {

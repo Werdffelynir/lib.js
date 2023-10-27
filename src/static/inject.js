@@ -16,7 +16,7 @@ import query from './query';
  * @param from
  * @returns {null|Node|boolean}
  */
-const inject = function (selector, data, append, from)
+const inject = function (selector, data, append = false, from = null)
 {
     if (typeOf(selector, 'array')) {
         selector.forEach((elem) => {

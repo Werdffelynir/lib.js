@@ -1,6 +1,6 @@
 # INSTALL
 ```shell
-npm i -d github:Werdffelynir/lib.js#main
+npm i -d github:Werdffelynir/lib.js#main libjs
 ```
 or added to your package.json
 ```json

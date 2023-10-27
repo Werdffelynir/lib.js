@@ -17,7 +17,7 @@ const doc = getDocument();
  * @param {object} thisInstance
  * @returns {*[]}
  */
-const queryAll = function (selector, from, callback, thisInstance) {
+const queryAll = function (selector, from, callback = null, thisInstance = null) {
     let elements = [];
     from = from || doc;
 
