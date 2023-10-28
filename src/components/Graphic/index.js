@@ -29,7 +29,7 @@ textBaseline : "top"
 textRendering : "auto"
 wordSpacing : "0px"
 */
-const GraphicContextStyles = {
+export const GraphicContextStyles = {
     direction : "ltr",
     fillStyle : "#ff8c00",
     filter : "none",
@@ -326,9 +326,15 @@ function Graphic(parameters = {}) {
 
         return this;
     };
-    this.fillRect = function (x, y, width, height) {
+    this.fillRect = function (x, y, width, height, strokeLineWidth = null) {
         this.context.fillRect(x, y, width, height);
 
+        if (strokeLineWidth !== null && strokeLineWidth >= 0) {
+            this.context.save();
+            this.context.lineWidth = strokeLineWidth;
+            this.strokeRect(x, y, width, height)
+            this.context.restore();
+        }
         return this;
     }
     this.strokeRect = function (x, y, width, height) {
@@ -394,6 +400,36 @@ function Graphic(parameters = {}) {
         }
     }
 
+    /**
+     *
+     * @param {function(Graphic: *, CanvasRenderingContext2D: context) | Object} that
+     * @param {function(Graphic: *, CanvasRenderingContext2D: context)} callback
+     * @returns {*&{clear(),draw()}}
+     */
+    this.clip = function (that, callback = (graphic, context) => {} ) {
+        if (arguments.length === 1) {
+            callback = that;
+            that = {};
+        }
+
+        that.clear = () => {
+            this.context.clearRect(0,0, 2000, 2000)
+        }
+        that.draw = (re_callback = undefined) => {
+            if (re_callback && re_callback !== callback)
+                callback = re_callback;
+
+            this.context.save();
+            callback.call(that, this, this.context);
+            this.context.restore();
+        }
+
+        that.draw ();
+
+        return that;
+    }
+
+
     this.toString = () => '[Graphic]';
 
     this.setContextStyle(this.styles);
@@ -425,5 +461,7 @@ Graphic.TEXT_FORMATS = {
     thickness: false,
     alpha: false,
 };
+
+Graphic.GraphicContextStyles = GraphicContextStyles;
 
 export default Graphic;

@@ -20,53 +20,49 @@ import merge from "../static/merge";
 /**
  * <pre>
  * // Static
- * Dom (selector)
- * Dom.id : element => document.getElementById(element)
- * Dom.attr (element, name, value)
- * Dom.create (tag, attrs, inner, styles)
- * Dom.css (selector, properties)
- * Dom.inject (selector, data, append, from)
- * Dom.on (selector, eventName, callback, bubble)
- * Dom.position (elem)
- * Dom.query (selector, from = null, callback = null, thisInstance = null)
- * Dom.queryAll (selector, from, callback, thisInstance)
- * Dom.search (selector, attr, from, stacked = false)
- * Dom.fragment (append)
- * Dom.node2str (element)
- * Dom.str2node (string)
- * Dom.loaded (callback)
+ * Elem.id : element => document.getElementById(element)
+ * Elem.create (tag, attrs, inner, styles)
+ * Elem.css (selector, properties)
+ * Elem.position (elem)
+ * Elem.query (selector, from = null, callback = null, thisInstance = null)
+ * Elem.queryAll (selector, from, callback, thisInstance)
+ * Elem.searchAttr (attr, from, stacked = false)
+ * Elem.fragment (append)
+ * Elem.node2str (element)
+ * Elem.str2node (string)
+ * Elem.loaded (callback)
  *
- * Dom('.class')
- * (new Dom(ELEMENT)).0 div#root
- * (new Dom(ELEMENT)).all ()
- * (new Dom(ELEMENT)).append (data)
- * (new Dom(ELEMENT)).before (data)
- * (new Dom(ELEMENT)).create (element)
- * (new Dom(ELEMENT)).attr (name, value)
- * (new Dom(ELEMENT)).children ()
- * (new Dom(ELEMENT)).coords ()
- * (new Dom(ELEMENT)).height ()
- * (new Dom(ELEMENT)).hide ()
- * (new Dom(ELEMENT)).inject (data, append, to)
- * (new Dom(ELEMENT)).on (eventName, callback, bubble)
- * (new Dom(ELEMENT)).one ()
- * (new Dom(ELEMENT)).css (properties)
- * (new Dom(ELEMENT)).parent ()
- * (new Dom(ELEMENT)).position ()
- * (new Dom(ELEMENT)).query (selector)
- * (new Dom(ELEMENT)).queryAll (selector)
- * (new Dom(ELEMENT)).remove ()
- * (new Dom(ELEMENT)).search (attr, from)
- * (new Dom(ELEMENT)).searchAttr (from, attr)
- * (new Dom(ELEMENT)).selected [div#root]
- * (new Dom(ELEMENT)).selector "#root"
- * (new Dom(ELEMENT)).show ()
- * (new Dom(ELEMENT)).toggle ()
- * (new Dom(ELEMENT)).width ()
- * (new Dom(ELEMENT)).x ()
- * (new Dom(ELEMENT)).y ()
+ * Elem('.class')
+ * (new Elem(ELEMENT)).0 div#root
+ * (new Elem(ELEMENT)).all ()
+ * (new Elem(ELEMENT)).append (data)
+ * (new Elem(ELEMENT)).before (data)
+ * (new Elem(ELEMENT)).create (element)
+ * (new Elem(ELEMENT)).attr (name, value)
+ * (new Elem(ELEMENT)).children ()
+ * (new Elem(ELEMENT)).coords ()
+ * (new Elem(ELEMENT)).height ()
+ * (new Elem(ELEMENT)).hide ()
+ * (new Elem(ELEMENT)).inject (data, append, to)
+ * (new Elem(ELEMENT)).on (eventName, callback, bubble)
+ * (new Elem(ELEMENT)).one ()
+ * (new Elem(ELEMENT)).css (properties)
+ * (new Elem(ELEMENT)).parent ()
+ * (new Elem(ELEMENT)).position ()
+ * (new Elem(ELEMENT)).query (selector)
+ * (new Elem(ELEMENT)).queryAll (selector)
+ * (new Elem(ELEMENT)).remove ()
+ * (new Elem(ELEMENT)).search (attr, from)
+ * (new Elem(ELEMENT)).searchAttr (from, attr)
+ * (new Elem(ELEMENT)).selected [div#root]
+ * (new Elem(ELEMENT)).selector "#root"
+ * (new Elem(ELEMENT)).show ()
+ * (new Elem(ELEMENT)).toggle ()
+ * (new Elem(ELEMENT)).width ()
+ * (new Elem(ELEMENT)).x ()
+ * (new Elem(ELEMENT)).y ()
  *
- * const em = new Dom('#transform', this.#html);
+ * const em = new Elem('#transform', this.#html);
  * em.css({ position: 'relative', });
  * em.setX = function (n) { em.css({ left: n + 'px', }); };
  * em.setY = function (n) { em.css({ top: n + 'px', }); };
@@ -76,7 +72,7 @@ import merge from "../static/merge";
  * </pre>
  *
  */
-class Dom {
+class Elem {
     selector = null;
     selected = null;
     constructor (selector, from = null) {
@@ -130,8 +126,8 @@ class Dom {
     toggle(){
         const src = this.one();
         if (isNode(src)) {
-            if (src.style.display === 'none') Dom.show(src);
-            else Dom.hide(src);
+            if (src.style.display === 'none') Elem.show(src);
+            else Elem.hide(src);
         }
     }
     on(eventName, callback, bubble){
@@ -154,14 +150,14 @@ class Dom {
     positionFixed(x = 0, y = 0){ this.changePosition(x, y, 'fixed'); }
     setX(n = 0){ this.css({ left: n + 'px' }) }
     setY(n = 0){ this.css({ top: n + 'px', }) }
-    toString(){ return '[Class Dom]' }
+    toString(){ return '[Class Elem]' }
 }
 
-Dom.create = createElement;
-Dom.fragment = createFragment;
-Dom.node2str = node2str;
-Dom.str2node = str2node;
-Dom.position = position;
+Elem.create = createElement;
+Elem.fragment = createFragment;
+Elem.node2str = node2str;
+Elem.str2node = str2node;
+Elem.position = position;
 
 
-export default Dom;
+export default Elem;

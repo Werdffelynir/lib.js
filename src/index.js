@@ -79,7 +79,7 @@ import Arr from "./components/Arr";
 import Chain from "./components/Chain";
 import Cookie from "./components/Cookie";
 import Datetime from "./components/Datetime";
-import Dom from "./components/Dom";
+import Elem from "./components/Elem";
 import HashRouter from "./components/HashRouter";
 import KeyboardManager from "./components/KeyboardManager";
 import Loader from "./components/Loader";
@@ -101,7 +101,7 @@ const LibJS = {
     Chain: Chain,
     Cookie: Cookie,
     Datetime: Datetime,
-    Dom: Dom,
+    Elem: Elem,
     KeyboardManager: KeyboardManager,
     Loader: Loader,
     Router: Router,

@@ -70,6 +70,8 @@ import hasLowerCase from "../static/hasLowerCase";
 import toMinusCase from "../static/toMinusCase";
 import addCss from "./cssInject";
 import request, {toQueryString}  from "./request";
+import isFloat from "./isFloat";
+import fixFloat from "./fixFloat";
 
 
 const Static = {
@@ -145,6 +147,8 @@ const Static = {
     addCss,
     request,
     toQueryString,
+    isFloat,
+    fixFloat,
 };
 
 export default Static;

@@ -25,23 +25,30 @@ this.style({
 });
 
 */
-const Transform = function (element, params)
-{
+const Transform = function (element, params) {
     const root = {
         element: element,
         transform_obj: {},
-        transform_arr: element.style.transform.split(')').filter((value) => value.length ),
+        transform_arr: element.style.transform.split(')').filter((value) => value.length),
         transform_string: '',
 
-        update(){
+        update() {
             root.transform_string = '';
 
             Object.keys(root.transform_obj).forEach((key) => {
                 root.transform_string += key + '(' + root.transform_obj[key].join(', ') + ') ';
             });
 
-            root.element.style.transform =  root.transform_string;
+            root.element.style.transform = root.transform_string;
             root.research();
+        },
+
+        isInt(n) {
+            return Number(n) === n && n % 1 === 0;
+        },
+
+        isFloat(n) {
+            return Number(n) === n && n % 1 !== 0;
         },
 
         method(method, properties, multiply = false) {
@@ -51,7 +58,7 @@ const Transform = function (element, params)
                 if (multiply) {
                     if (root.transform_obj[method]) {
                         properties.forEach((value, i) => {
-                            if(typeof value === 'string') {
+                            if (typeof value === 'string') {
                                 const ext = value.match(/[a-z]+/g);
                                 const num = parseInt(value) + parseInt(root.transform_obj[method][i]);
                                 properties[i] = num + ext;
@@ -72,22 +79,21 @@ const Transform = function (element, params)
             }
         },
 
-        research(){
+        research() {
             root.transform_arr = element.style.transform.split(')')
-                .filter((value) => value.length );
+                .filter((value) => value.length);
 
             root.transform_arr.forEach((value, i) => {
-                const param = root.transform_arr[i] = root.transform_arr[i].trim()  + ')';
+                const param = root.transform_arr[i] = root.transform_arr[i].trim() + ')';
                 const matched = param.match(/[\w\.\-]+/ig);
                 root.transform_obj[matched[0]] = matched.slice(1);
             });
         },
 
-        functionParameters(name, FIRST_ITEM_TO_INTEGER = false){
+        functionParameters(name, FIRST_ITEM_TO_INTEGER = false) {
             if (FIRST_ITEM_TO_INTEGER
                 && Array.isArray(root.transform_obj[name])
-                && root.transform_obj[name].length === 1)
-            {
+                && root.transform_obj[name].length === 1) {
                 const item = root.transform_obj[name][0];
                 return isNumber(item)
                     ? parseInt(item)
@@ -109,10 +115,12 @@ const Transform = function (element, params)
     return root;
 }
 
-Transform.element = function (element, values){
+Transform.element = function (element, values) {
     if (Array.isArray(values)) {
         const props = [];
-        values.forEach((prop) => { props.push(prop) });
+        values.forEach((prop) => {
+            props.push(prop)
+        });
         stylizer(element, {transform: props.join(' ')});
     }
 };
