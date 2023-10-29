@@ -53,7 +53,7 @@ import merge from "../static/merge";
  * (new Elem(ELEMENT)).queryAll (selector)
  * (new Elem(ELEMENT)).remove ()
  * (new Elem(ELEMENT)).search (attr, from)
- * (new Elem(ELEMENT)).searchAttr (from, attr)
+ * (new Elem(ELEMENT)).searchAttr (attr, from)
  * (new Elem(ELEMENT)).selected [div#root]
  * (new Elem(ELEMENT)).selector "#root"
  * (new Elem(ELEMENT)).show ()
@@ -95,7 +95,7 @@ class Elem {
     append(data){ return inject(this.one(), data, true); }
     before(data){ return this.parent().insertBefore(data, this.one()); }
     search(selector, attr){ return search(selector, attr, this.one()); }
-    searchAttr(attr){ return searchAttr( this.one(), attr); }
+    searchAttr(attr){ return searchAttr( attr, this.one() ); }
     parent(){ return this.one().parentNode; }
     children(selector = null){
         if (selector)
@@ -153,6 +153,8 @@ class Elem {
     toString(){ return '[Class Elem]' }
 }
 
+Elem.query = query;
+Elem.queryAll = queryAll;
 Elem.create = createElement;
 Elem.fragment = createFragment;
 Elem.node2str = node2str;

@@ -75,6 +75,8 @@ import css from "./static/css";
 import createFragment from "./static/createFragment";
 import createElement from "./static/createElement";
 import cssInject from "./static/cssInject";
+import dice from "./static/dice";
+
 import Arr from "./components/Arr";
 import Chain from "./components/Chain";
 import Cookie from "./components/Cookie";
@@ -93,6 +95,7 @@ import Timer from "./components/Timer";
 import Transform from "./components/Transform";
 import Template from "./components/Template";
 import Waiter from "./components/Waiter";
+import finds from "./static/find";
 
 const LibJS = {
 
@@ -133,9 +136,8 @@ const LibJS = {
         exists: exists,
         extend: extend,
         extendRecursive: extendRecursive,
-        find: find,
-        findOne: find.one,
-        findMany: find.one,
+        find: finds.one,
+        finds: finds.many,
         format: format,
         getDocument: getDocument,
         getLocation: getLocation,
@@ -202,6 +204,7 @@ const LibJS = {
         uri: uri,
         values: values,
         wait: wait,
+        dice: dice,
     },
 };
 

@@ -12,12 +12,12 @@ const doc = getDocument();
  * node = queryAll( '.sidebar', '.left', (elem) => {console.log(elem)}, DATA_OBJECT );
  *
  * @param {string|Element} selector
- * @param {string|Element} from
+ * @param {string|Element|null} from
  * @param {function} callback
  * @param {object} thisInstance
  * @returns {*[]}
  */
-const queryAll = function (selector, from, callback = null, thisInstance = null) {
+const queryAll = function (selector, from = null, callback = null, thisInstance = null) {
     let elements = [];
     from = from || doc;
 

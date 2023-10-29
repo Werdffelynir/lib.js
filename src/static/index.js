@@ -72,6 +72,7 @@ import addCss from "./cssInject";
 import request, {toQueryString}  from "./request";
 import isFloat from "./isFloat";
 import fixFloat from "./fixFloat";
+import dice from "./dice";
 
 
 const Static = {
@@ -149,6 +150,7 @@ const Static = {
     toQueryString,
     isFloat,
     fixFloat,
+    dice,
 };
 
 export default Static;
