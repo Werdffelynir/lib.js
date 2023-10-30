@@ -9,7 +9,7 @@ import isNode from './isNode';
  * @param {function} callback
  * @param {boolean} bubble
  */
-const on = function (selector, eventName, callback, bubble) {
+const on = function (selector, eventName, callback, bubble = false) {
     let i, elements = [];
 
     switch (typeOf(selector)) {

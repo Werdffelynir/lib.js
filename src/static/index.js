@@ -55,8 +55,6 @@ import exists from "../static/exists";
 import isDefined from "../static/isDefined";
 import loadBlobfile from "../static/loadBlobfile";
 import loadJSON from "../static/loadJSON";
-// import loadTextfile from "../static/loadTextfile";
-// import toHTML from "../static/toHTML";
 import toXML from "../static/toXML";
 import stylizer from "../static/stylizer";
 import uniqArray from "../static/uniqArray";
@@ -78,8 +76,8 @@ import dice from "./dice";
 const Static = {
     abc,
     attr,
-    createElement,
-    createFragment,
+    create: createElement,
+    fragment: createFragment,
     css,
     domLoaded,
     getDocument,

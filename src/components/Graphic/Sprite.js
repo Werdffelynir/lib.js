@@ -24,14 +24,14 @@ class Sprite {
 
     /**
      *
-     * @param {HTMLImageElement|Image} image
+     * @param {HTMLImageElement|Image|HTMLCanvasElement} image
      * @param {Number} sprite_width
      * @param {Number} sprite_height
      */
     constructor(image, sprite_width = 0, sprite_height = 0) {
         if (!sprite_width) sprite_width = image.width;
         if (!sprite_height) sprite_height = image.height;
-        if (!(image instanceof Image)) 
+        if (!(image instanceof Image) && !(image instanceof HTMLCanvasElement))
             console.error('image is not type of Image');
 
         this.width = sprite_width;
@@ -59,13 +59,14 @@ class Sprite {
         this.resize_width = width;
         this.resize_height = height;
         this.resize_stretch = stretch;
+        return this;
     }
 
     getImage(){
         return this.image;
     }
     getCanvas(callback){
-        this.getPosition(0, 0, this.width, this.height, callback);
+        return this.getPosition(0, 0, this.width, this.height, callback);
     }
     mirrorVertical(canvas){
         return Sprite.mirrorVertical(canvas);
