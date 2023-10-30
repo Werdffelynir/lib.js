@@ -8,8 +8,9 @@ import queryAll from './queryAll';
  * // or
  * css( '.header', 'color', 'red' )
  *
- * @param selector
- * @param properties
+ * @param {HTMLElement|String|Array|Object|{}} selector
+ * @param {CSSStyleDeclaration|{}} properties
+ *
  * @returns {null|undefined}
  */
 const css = function (selector, properties) {

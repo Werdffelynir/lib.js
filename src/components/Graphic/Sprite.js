@@ -18,6 +18,16 @@
 class Sprite {
     static mirrorVertical;
     static mirrorHorizontal;
+    static rotate;
+
+    #length = 0;
+
+    /**
+     *
+     * @param {HTMLImageElement|Image} image
+     * @param {Number} sprite_width
+     * @param {Number} sprite_height
+     */
     constructor(image, sprite_width = 0, sprite_height = 0) {
         if (!sprite_width) sprite_width = image.width;
         if (!sprite_height) sprite_height = image.height;
@@ -33,6 +43,12 @@ class Sprite {
             width: Math.ceil(this.image_width / this.width),
             height: Math.ceil(this.image_height / this.height)
         };
+
+        this.#length = this.grid.width * this.grid.height;
+    }
+
+    get length(){
+        return this.#length;
     }
 
     resize_width = null;
@@ -51,21 +67,15 @@ class Sprite {
     getCanvas(callback){
         this.getPosition(0, 0, this.width, this.height, callback);
     }
-    rotate(){
-        return this.image;
-    }
     mirrorVertical(canvas){
-        // const context = canvas.getContext('2d');
-        // context.setTransform(-1, 0, 0, 1, this.width, 0);
         return Sprite.mirrorVertical(canvas);
     }
     mirrorHorizontal(canvas){
-        // const context = canvas.getContext('2d');
-        // context.setTransform(1, 0, 0, -1, 0, this.height);
         return Sprite.mirrorHorizontal(canvas);
     }
-    // mirror vertical
-    // mirror horizontal
+    rotate(canvas, degree){
+        return Sprite.rotate(canvas, degree)
+    }
     getPosition(x = 0, y = 0, sprite_width = this.width, sprite_height = this.height, callback = null) {
         const canvas = document.createElement('canvas');
         const context = canvas.getContext('2d');
@@ -180,6 +190,24 @@ Sprite.mirrorHorizontal = function (canvas){
     context.scale(1, -1);
     context.drawImage(canvas, 0, 0, canvas.width, canvas.height *- 1);
     context.restore();
+    return canvas;
+}
+/**
+ * @param {HTMLCanvasElement} canvas
+ * @param {Number} degree
+ */
+Sprite.rotate = function (canvas, degree){
+    /** @type CanvasRenderingContext2D */
+    const context_origin = canvas.getContext('2d');
+    const canvas2 = document.createElement('canvas')
+    const context2 = canvas2.getContext('2d');
+    canvas2.width = canvas.width;
+    canvas2.height = canvas.height;
+    context2.translate(32, 32)
+    context2.rotate(degree * Math.PI / 180 );
+    context2.drawImage(canvas, -32, -32, canvas.width, canvas.height);
+    context_origin.clearRect(0, 0, canvas.width, canvas.height);
+    context_origin.drawImage(canvas2, 0, 0, canvas.width, canvas.height);
     return canvas;
 }
 

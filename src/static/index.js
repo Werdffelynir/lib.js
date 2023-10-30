@@ -24,7 +24,7 @@ import extend, {
     extendRecursive
 }  from "../static/extend";
 import isEmpty from "../static/isEmpty";
-import finds from "../static/find";
+import finds from "../static/finds";
 import format from "../static/format";
 import isNode from "../static/isNode";
 import loadCSS from "../static/loadCSS";

@@ -160,6 +160,19 @@ Elem.fragment = createFragment;
 Elem.node2str = node2str;
 Elem.str2node = str2node;
 Elem.position = position;
+Elem.inject = inject;
+
+/** @param {HTMLElement} element */
+Elem.hide = function (element) {
+    if (getComputedStyle(element).display !== 'none') {
+        element.last_display = getComputedStyle(element).display
+    }
+    element.style.display = 'none';
+};
+/** @param {HTMLElement} element */
+Elem.show = function (element) {
+    element.style.display = element.last_display || 'block';
+};
 
 
 export default Elem;

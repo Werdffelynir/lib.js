@@ -64,7 +64,7 @@ import getWindow from "./static/getWindow";
 import getLocation from "./static/getLocation";
 import getDocument from "./static/getDocument";
 import format from "./static/format";
-import find from "./static/find";
+import finds from "./static/finds";
 import extend, {extendRecursive} from "./static/extend";
 import exists from "./static/exists";
 import encodeGetQuery from "./static/encodeGetQuery";
@@ -95,7 +95,7 @@ import Timer from "./components/Timer";
 import Transform from "./components/Transform";
 import Template from "./components/Template";
 import Waiter from "./components/Waiter";
-import finds from "./static/find";
+
 
 const LibJS = {
 
