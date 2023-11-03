@@ -1,5 +1,6 @@
 import typeOf from './typeOf';
 import isNode from './isNode';
+import isObject from "./isObject";
 
 /**
  *
@@ -37,7 +38,13 @@ const createElement = function (tag, attrs, inner, styles) {
     }
 
     if (attrs)
-        Object.keys(attrs).forEach((key) => {element.setAttribute(key, attrs[key])});
+        Object.keys(attrs).forEach((key) => {
+            if (key === 'style' && isObject(attrs[key])) {
+                styles = styles ? {...styles, ...attrs[key]} : attrs[key];
+            } else {
+                element.setAttribute(key, attrs[key])
+            }
+        });
 
     if (styles)
         Object.keys(styles).forEach((key) => {element.style[key] = styles[key]});
