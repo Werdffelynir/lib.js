@@ -26,7 +26,7 @@ import shuffleArray from "./static/shuffleArray";
 import search from "./static/search";
 import redirect from "./static/redirect";
 import range from "./static/range";
-import {random, randomColor, randomItem, randomNumber, randomString} from "./static/random";
+import {random, randomColor, randomColors, randomItem, randomNumber, randomString} from "./static/random";
 import radiansToDegrees from "./static/radiansToDegrees";
 import query from "./static/query";
 import queryAll from "./static/queryAll";
@@ -88,7 +88,7 @@ import Loader from "./components/Loader";
 import Router from "./components/Router";
 import Roxy from "./components/Roxy";
 import RoxyListener from "./components/RoxyListener";
-import Sprite from "./components/Graphic/Sprite";
+import Tileset from "./components/Graphic/Tileset";
 import Str from "./components/Str";
 import Storage from "./components/Storage";
 import Timer from "./components/Timer";
@@ -117,7 +117,7 @@ const LibJS = {
     Template: Template,
     HashRouter: HashRouter,
     Waiter: Waiter,
-    Sprite: Sprite,
+    Tileset: Tileset,
 
     // static
     u: {
@@ -177,6 +177,7 @@ const LibJS = {
         radiansToDegrees: radiansToDegrees,
         random: random,
         randomColor: randomColor,
+        randomColors: randomColors,
         randomItem: randomItem,
         randomNumber: randomNumber,
         randomString: randomString,

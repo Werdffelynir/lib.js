@@ -27,6 +27,19 @@ export const randomColor = function () {
 };
 random.color = randomColor;
 
+/**
+ *
+ * @param count
+ * @returns {*[]}
+ */
+export const randomColors = (count = 1) => {
+    const list = [];
+    for (let i = 0; i < count; i++) {
+        list.push("#" + Math.floor(Math.random() * 16777215).toString(16));
+    }
+    return list;
+};
+random.colors = randomColors;
 
 /**
  *
