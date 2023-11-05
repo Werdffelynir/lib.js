@@ -1,4 +1,5 @@
 import createElement from "../../static/createElement";
+import str2node from "../../static/str2node";
 
 class Tileset {
     #tile
@@ -275,6 +276,9 @@ class Tileset {
 
         // source.style.position = 'absolute';
         // source.style.position = 'relation';
+        if (typeof source === 'string') {
+            source = str2node(source);
+        }
 
         /**
          * CSSFontFaceRule.style: CSSStyleDeclaration
@@ -330,9 +334,6 @@ class Tileset {
         if ((width || height) && (width >= 0 || height >= 0)) {
             source.resize(width ? width : source.width, height ? height : source.height);
         }
-        // if (width || height) {
-        //     source.resize(width ? width : source.width ?? 100, height ? height : source.height ?? 100);
-        // }
 
         source.move(x, y);
         source.deep(z);
