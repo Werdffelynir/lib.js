@@ -95,6 +95,7 @@ import Timer from "./components/Timer";
 import Transform from "./components/Transform";
 import Template from "./components/Template";
 import Waiter from "./components/Waiter";
+import DateFixer from "./components/DateFixer";
 
 
 const LibJS = {
@@ -118,6 +119,7 @@ const LibJS = {
     HashRouter: HashRouter,
     Waiter: Waiter,
     Tileset: Tileset,
+    DateFixer: DateFixer,
 
     // static
     u: {
