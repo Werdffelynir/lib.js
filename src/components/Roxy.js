@@ -66,6 +66,7 @@ import copy from "../static/copy";
 
 /**
  *
+ * @deprecated
  * @param payload
  * @returns {{removeLoopListener(): boolean, readonly proxy: *, loopListener(*): void, dispatch(*, *): this, getProxy(): *, get(*): *, fill(*, *): this, getContext(): *, observe(*, *): this}|*|boolean|null}
  * @constructor

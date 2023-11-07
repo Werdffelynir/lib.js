@@ -21,6 +21,7 @@ rx.action();
  *
  * rx.action();
  *
+ * @deprecated
  * @param payload
  * @returns {{removeLoopListener(): boolean, readonly proxy: *, loopListener(*): void, dispatch(*, *): this, getProxy(): *, get(*): *, fill(*, *): this, getContext(): *, observe(*, *): this}} * @constructor
  * @constructor

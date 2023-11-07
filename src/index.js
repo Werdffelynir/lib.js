@@ -96,6 +96,7 @@ import Transform from "./components/Transform";
 import Template from "./components/Template";
 import Waiter from "./components/Waiter";
 import DateFixer from "./components/DateFixer";
+import Oxy from "./components/Oxy";
 
 
 const LibJS = {
@@ -120,6 +121,7 @@ const LibJS = {
     Waiter: Waiter,
     Tileset: Tileset,
     DateFixer: DateFixer,
+    Oxy: Oxy,
 
     // static
     u: {
