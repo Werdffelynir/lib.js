@@ -76,6 +76,7 @@ import createFragment from "./static/createFragment";
 import createElement from "./static/createElement";
 import cssInject from "./static/cssInject";
 import dice from "./static/dice";
+import load from "./static/load";
 
 import Arr from "./components/Arr";
 import Chain from "./components/Chain";
@@ -210,6 +211,7 @@ const LibJS = {
         values: values,
         wait: wait,
         dice: dice,
+        load: load,
     },
 };
 

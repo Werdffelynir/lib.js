@@ -71,6 +71,7 @@ import request, {toQueryString}  from "./request";
 import isFloat from "./isFloat";
 import fixFloat from "./fixFloat";
 import dice from "./dice";
+import load from "./load";
 
 
 const Static = {
@@ -149,6 +150,7 @@ const Static = {
     isFloat,
     fixFloat,
     dice,
+    load,
 };
 
 export default Static;

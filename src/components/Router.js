@@ -1,51 +1,41 @@
-import trimSymbols from "../static/trimSymbols";
 
 /**
- *
- * @param config
- * @returns {{}}
- * @constructor
+ * <pre>
+ * const params = {
+ *     '/': function (path){contentElement.innerHTML = 'Welcome to the Home Page!';},
+ *     '/about': function (path){contentElement.innerHTML = 'This is the About Page!';},
+ *     'default': function (path){contentElement.innerHTML = 'Error 404!';},
+ * }
+ * const router = new Router(params);
+ * router.navigateTo('/about');
+ * </pre>
  */
-const Router = function (config)
-{
-    const root = {};
-    root.hash = location.hash;
-    root.root = '/' + trimSymbols(config.root, '/');
-    root.pathname = '/' + trimSymbols(location.pathname, '/') + '/';
-    root.routes = config.routes ? config.routes : {};
-    root.context = config.context ? config.context : {};
+class Router {
+    #path;
+    #params;
+    constructor(params) {
+        this.#path = window.location.pathname + window.location.hash;
+        this.#params = params;
+        this.navigateTo(this.#path);
+        window.addEventListener('popstate', () => {
+            this.match();
+        });
+    }
+    match() {
+        this.#path = window.location.pathname + window.location.hash;
 
-    root.state = function (stateObj, title, uri) {
-        stateObj.uri = stateObj.uri ? stateObj.uri : uri;
-        stateObj.title = stateObj.title ? stateObj.title : title;
-        if (history.state.uri === uri) {
-            return history.replaceState(stateObj, title, uri);
+        if (this.#params[this.#path]) {
+            this.#params[this.#path].call(this, this, this.#path);
+        } else {
+            console.error('Error 404. Page Not Found!');
+            if (this.#params.default)
+                this.#params.default.call(this, this, this.#path);
         }
-        return history.pushState(stateObj, title, uri);
-    };
-
-    root.to = function (key, stateObj) {
-        console.log('Router.to', key);
-        if (typeof root.routes[key] === "function") {
-
-            if (stateObj) {
-                root.state(stateObj, stateObj.title, stateObj.uri);
-            }
-            root.routes[key].call(root, root.context);
-        }
-    };
-
-    Object.keys(root.routes).forEach((key) => {
-        let is = key.includes('#')
-            ? key === root.hash
-            : root.root + key === root.pathname;
-
-        if (is && typeof root.routes[key] === "function") {
-            root.routes[key].call(root, root.context);
-        }
-    });
-
-    return root;
-};
+    }
+    navigateTo(route) {
+        window.history.pushState(null, null, route);
+        this.match();
+    }
+}
 
 export default Router;
