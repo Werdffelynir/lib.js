@@ -72,6 +72,7 @@ import isFloat from "./isFloat";
 import fixFloat from "./fixFloat";
 import dice from "./dice";
 import load from "./load";
+import download from "./download";
 
 
 const Static = {
@@ -151,6 +152,7 @@ const Static = {
     fixFloat,
     dice,
     load,
+    download,
 };
 
 export default Static;

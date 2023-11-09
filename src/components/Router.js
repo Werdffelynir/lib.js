@@ -13,6 +13,7 @@
 class Router {
     #path;
     #params;
+    #current;
     constructor(params) {
         this.#path = window.location.pathname + window.location.hash;
         this.#params = params;
@@ -33,8 +34,11 @@ class Router {
         }
     }
     navigateTo(route) {
-        window.history.pushState(null, null, route);
-        this.match();
+        if (this.#current !== route) {
+            this.#current = route;
+            window.history.pushState(null, null, route);
+            this.match();
+        }
     }
 }
 
