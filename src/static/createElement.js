@@ -8,7 +8,7 @@ import isObject from "./isObject";
  * @param attrs
  * @param inner
  * @param styles
- * @return {HTMLElement|Node}
+ * @return {HTMLElement,HTMLCanvasElement}
  */
 const createElement = function (tag, attrs, inner, styles) {
 
@@ -32,11 +32,11 @@ const createElement = function (tag, attrs, inner, styles) {
                 for (let i = 0; i < src.length; i++) insert(src[i]);
         };
 
-    if (arguments.length === 2 && !Array.isArray(attrs)) {
+    if (arguments.length === 2 && Array.isArray(attrs)) {
         inner = attrs;
         attrs = false;
     }
-
+    console.log(attrs)
     if (attrs)
         Object.keys(attrs).forEach((key) => {
             if (key === 'style' && (attrs[key] && typeof attrs[key] === 'object')) {

@@ -17,7 +17,8 @@ async function load(sources) {
     const _audio = sources.audio ?? {};
     const _image = sources.image ?? {};
     const _svg = sources.svg ?? {};
-    const repository = {audio: {}, image: {}, svg: {}};
+    const _json = sources.json ?? {};
+    const repository = {audio: {}, image: {}, svg: {}, json: {}};
 
     for (let key in _audio) {
         repository.audio[key] = await load.audio(_audio[key]);
@@ -27,6 +28,9 @@ async function load(sources) {
     }
     for (let key in _svg) {
         repository.svg[key] = await load.svg(_svg[key]);
+    }
+    for (let key in _json) {
+        repository.json[key] = await load.svg(_json[key]);
     }
 
     return repository;
@@ -59,6 +63,10 @@ load.image = async function (src) {
 load.fetchText = async function (url) {
     const response = await fetch(url);
     return await response.text();
+}
+load.fetchJson = async function (url) {
+    const response = await fetch(url);
+    return await response.json();
 }
 load.svg = async function (src, width = 100, height = 100, callback) {
     const svg = new DOMParser().parseFromString(await load.fetchText(src), 'image/svg+xml').firstElementChild;
