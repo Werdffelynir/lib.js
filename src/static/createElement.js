@@ -36,7 +36,6 @@ const createElement = function (tag, attrs, inner, styles) {
         inner = attrs;
         attrs = false;
     }
-    console.log(attrs)
     if (attrs)
         Object.keys(attrs).forEach((key) => {
             if (key === 'style' && (attrs[key] && typeof attrs[key] === 'object')) {
