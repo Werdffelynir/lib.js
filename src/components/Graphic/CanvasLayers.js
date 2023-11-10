@@ -438,10 +438,6 @@ const CanvasLayers = function (options) {
     };
 
 
-    /**
-     *
-     */
-
 
     applyOption('canvas', (canvasElement) => {
         let wrapper = null;

@@ -145,6 +145,12 @@ export const GraphicContextStyles = {
  * @constructor
  */
 function Graphic(parameters = {}) {
+    if (parameters instanceof HTMLCanvasElement) {
+        parameters = {context: parameters.getContext('2d')};
+    }
+    if (parameters instanceof CanvasRenderingContext2D) {
+        parameters = {context: parameters};
+    }
     if (!(this instanceof Graphic)) {
         return new Graphic(parameters);
     }
@@ -249,7 +255,7 @@ function Graphic(parameters = {}) {
         this.context.restore();
         return this;
     };
-    this.clearRect = function (x = 0, y = 0, w = this.width, h = this.height) {
+    this.clear = this.clearRect = function (x = 0, y = 0, w = this.width, h = this.height) {
         this.context.clearRect(x, y, w, h);
         return this;
     };
