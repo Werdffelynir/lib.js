@@ -80,6 +80,7 @@ class Tileset {
                 }
                 if (flip_vertical) {
                     const tmp = this.canvasCopy(context.canvas);
+                    context.clearRect(0, 0, width, height);
                     context.save();
                     context.scale(1, -1);
                     context.drawImage(tmp, 0, 0, width, height * -1);
@@ -87,6 +88,7 @@ class Tileset {
                 }
                 if (flip_horizontal) {
                     const tmp = this.canvasCopy(context.canvas);
+                    context.clearRect(0, 0, width, height);
                     context.save();
                     context.scale(-1, 1);
                     context.drawImage(tmp, 0, 0, width * -1, height);
