@@ -6,10 +6,17 @@
  */
 import {ABC, LETTER_CONSONANT, LETTER_VOWEL, NUMBERS} from "./abc";
 
-
-export const random = function (min, max) {
-    min = min || 0;
-    max = max || 100;
+/**
+ *
+ * @param min
+ * @param max
+ * @param float
+ * @returns {number}
+ */
+export const random = function (min = 0, max = 100, float = false) {
+    if (float) {
+        return parseFloat((min + Math.random() * (max - min)).toFixed(float >= 1 ? float : 3 ));
+    }
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
 

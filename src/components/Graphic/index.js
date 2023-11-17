@@ -166,6 +166,10 @@ function Graphic(parameters = {}) {
     this.closePath = true;
     this.anticlockwise = false;
 
+    /**
+     * Use setContextStyle( GraphicContextStyles )
+     * @type {{lineDashOffset: number, shadowOffsetX: number, fontStretch: string, shadowOffsetY: number, imageSmoothingEnabled: boolean, shadowBlur: number, wordSpacing: string, imageSmoothingQuality: string, lineWidth: number, fontKerning: string, globalAlpha: number, textRendering: string, shadowColor: string, direction: string, textBaseline: string, strokeStyle: string, fontVariantCaps: string, textAlign: string, globalCompositeOperation: string, letterSpacing: string, lineJoin: string, miterLimit: number, filter: string, lineCap: string, fillStyle: string, font: string}}
+     */
     this.styles = GraphicContextStyles;
 
     applyParameter('context', (value) => {this.context = value});
@@ -213,7 +217,7 @@ function Graphic(parameters = {}) {
      * shadowOffsetY: 0
      * </pre>
      *
-     * @param {GraphicContextStyles|Object} styles
+     * @param {{GraphicContextStyles}} styles
      */
     this.setContextStyle = function (styles) {
         Object.keys(styles).forEach((key) => {
@@ -224,7 +228,32 @@ function Graphic(parameters = {}) {
             }
         });
     };
-
+    /**
+     * <pre>
+     * image: CanvasImageSource, dx: number, dy: number
+     * image: CanvasImageSource, dx: number, dy: number, dw: number, dh: number
+     * image: CanvasImageSource, sx: number, sy: number, sw: number, sh: number, dx: number, dy: number, dw: number, dh: number
+     * </pre>
+     * @param img
+     * @param x
+     * @param y
+     */
+    this.image = function (img, x = 0, y = 0) {
+        this.context.drawImage.apply(this.context, arguments.length === 1 ? [img, x, y] : arguments)
+        return this;
+    }
+    /**
+     * (image: CanvasImageSource, repetition: string | null) "repeat" "repeat-x" "repeat-y" "no-repeat"
+     * @param {CanvasImageSource} img
+     * @param repetition
+     */
+    this.pattern = function (img, repetition = "no-repeat") {
+        return this.context.createPattern(img, repetition)
+    }
+    this.fillPattern = function (img, repetition = "no-repeat") {
+        this.fill(this.pattern(img, repetition));
+        return this;
+    }
     this.fill = function (fillStyle, fillRule = undefined) {
         if (fillStyle)
             this.context.fillStyle = fillStyle;
@@ -255,6 +284,10 @@ function Graphic(parameters = {}) {
         this.context.restore();
         return this;
     };
+    this.opacity = this.alpha = function (alpha = 1) {
+        this.context.globalAlpha = alpha;
+        return this;
+    };
     this.clear = this.clearRect = function (x = 0, y = 0, w = this.width, h = this.height) {
         this.context.clearRect(x, y, w, h);
         return this;
@@ -275,7 +308,7 @@ function Graphic(parameters = {}) {
 
         return this;
     };
-    this.ellipse = function (x, y, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise, closePath) {
+    this.ellipse = function (x, y, radiusX, radiusY, rotation = 0, startAngle = 0, endAngle = 2 * Math.PI, anticlockwise = false, closePath = false) {
         closePath = closePath !== undefined ? !!closePath : this.closePath;
         this.context.save();
         this.context.beginPath();

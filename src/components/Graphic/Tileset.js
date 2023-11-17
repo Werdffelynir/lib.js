@@ -1,5 +1,6 @@
 import createElement from "../../static/createElement";
 import str2node from "../../static/str2node";
+import typeOfStrict from "../../static/typeOfStrict";
 
 class Tileset {
     #tile
@@ -51,6 +52,7 @@ class Tileset {
         const flip_horizontal = options.flip_horizontal ?? false;
         const callback = options.callback ?? null;
         const indexes = this.tilemap();
+        idx = parseInt(idx);
         for (let i = 0; i < indexes.length; i++) {
             if (idx !== i) continue;
             return this.position(indexes[i].x, indexes[i].y, width, height, /**@param {CanvasRenderingContext2D} context*/(context) => {
@@ -274,16 +276,21 @@ class Tileset {
         const width = options.width ?? 0;
         const height = options.height ?? 0;
 
-        // source.style.position = 'absolute';
-        // source.style.position = 'relation';
-        if (typeof source === 'string') {
-            source = str2node(source);
+        // position: 'absolute'
+        // position: 'relation'
+        if (options.position) {
+            source.style.position = options.position;
         }
 
+        if (!source || source === 'canvas') {
+            source = createElement('canvas', {width, height});
+        }
+        if (typeof source === 'string') {
+            if(source === 'div') source = createElement('div');
+            else source = str2node(source);
+        }
         /**
-         * CSSFontFaceRule.style: CSSStyleDeclaration
-         * param {CSSStyleDeclaration|CSSStyleSheet} styles
-         * @param {CSSStyleSheet|HTMLElement.style |*} styles
+         * @type {CSSStyleSheet|HTMLElement.style|CSSStyleDeclaration|*} styles
          */
         source.setStyle = function (styles) {
             Object.keys(styles).forEach((name) => {
@@ -312,26 +319,24 @@ class Tileset {
         }
 
         source.resize = function (width, height) {
-            if (source instanceof HTMLElement) {
-                source.width = width;
-                source.height = height;
+            const type = typeOfStrict(source);
+            source.width = width;
+            source.height = height;
+            if (type === 'HTMLCanvasElement') {
+                source.style.transform = `scale(${width / source.width}, ${height / source.height})`;
+            }
+            if (type === 'HTMLImageElement') {
+                source.style.transform = `scale(${width / source.width}, ${height / source.height})`;
                 source.style.width = width + 'px';
                 source.style.height = height + 'px';
             }
-            if (source instanceof HTMLImageElement || source instanceof HTMLCanvasElement) {
-                source.style.transform = `scale(${width / source.width}, ${height / source.height})`;
-                source.style.width = source.width + 'px';
-                source.style.height = source.height + 'px';
-            }
-
-            if (source instanceof SVGSVGElement) {
+            if (type === 'SVGSVGElement') {
                 source.setAttribute('width', width + 'px');
                 source.setAttribute('height', height + 'px');
             }
         }
 
-
-        if ((width || height) && (width >= 0 || height >= 0)) {
+        if ((width || height) && (width >= 0 || height >= 0) && (width !== source.width && height !== source.height )) {
             source.resize(width ? width : source.width, height ? height : source.height);
         }
 

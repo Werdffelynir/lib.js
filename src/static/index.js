@@ -73,6 +73,7 @@ import fixFloat from "./fixFloat";
 import dice from "./dice";
 import load from "./load";
 import download from "./download";
+import addStyle from "./addStyle";
 
 
 const Static = {
@@ -153,6 +154,7 @@ const Static = {
     dice,
     load,
     download,
+    addStyle,
 };
 
 export default Static;

@@ -19,11 +19,11 @@
 // typeOfStrict(()=>{}        )        - Function
 /**
  *
- * @param value
- * @param type
+ * @param {*} value
+ * @param {boolean|string} type
  * @return {boolean|string}
  */
-const typeOfStrict = function (value, type) {
+const typeOfStrict = function (value, type = false) {
     const t = Object.prototype.toString.call(value).slice(8, -1);
     return typeof type === 'string' ? type === t : t;
 };
