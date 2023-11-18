@@ -251,7 +251,14 @@ class Tileset {
     /**
      * Decorator
      * <pre>
-     * clip = tileset.moveclip( canvas, { x: 0, y: 0, width: 100, height: 100, callback: () => {} } )
+     * clip = tileset.moveclip( canvas, {
+     *      x: 0,
+     *      y: 0,
+     *      width: 100,
+     *      height: 100,
+     *      styles: {color: 'white'},
+     *      callback: () => {},
+     * } )
      * clip.setStyle()
      * clip.setX()
      * clip.setY()
@@ -344,6 +351,10 @@ class Tileset {
 
         source.move(x, y);
         source.deep(z);
+
+        if (options.styles) {
+            source.setStyle(options.styles);
+        }
 
         return source;
     }

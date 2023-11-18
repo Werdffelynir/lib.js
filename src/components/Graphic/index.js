@@ -61,7 +61,7 @@ export const GraphicContextStyles = {
 /**
  *
  * <pre>
- *      const CanvasGraphic = new Graphic({
+ *      const graphic = new Graphic({
  *          context: context,
  *          closePath: true,
  *          anticlockwise: true,
@@ -70,31 +70,31 @@ export const GraphicContextStyles = {
  *
  *      // Properties:
  *
- *      CanvasGraphic.context
- *      CanvasGraphic.closePath
- *      CanvasGraphic.styles
+ *      graphic.context
+ *      graphic.closePath
+ *      graphic.styles
  *
  *      // Methods
  *
  *      //
- *      CanvasGraphic.fill ( fillStyle, fillRule )
+ *      graphic.fill ( fillStyle, fillRule )
  *
  *      //
- *      CanvasGraphic.stroke ( strokeStyle, path )
+ *      graphic.stroke ( strokeStyle, path )
  *
  *      //
- *      CanvasGraphic.begin ()
- *      CanvasGraphic.close ()
- *      CanvasGraphic.save ()
- *      CanvasGraphic.restore ()
+ *      graphic.begin ()
+ *      graphic.close ()
+ *      graphic.save ()
+ *      graphic.restore ()
  *
  *      //
- *      CanvasGraphic.shadow (x, y, blur, color)
- *      CanvasGraphic.clearShadow ()
+ *      graphic.shadow (x, y, blur, color)
+ *      graphic.clearShadow ()
  *
  *      //
- *      CanvasGraphic.setContextStyle ( [GraphicContextStyle] )
- *      CanvasGraphic.setContextStyle ( {
+ *      graphic.setContextStyle ( [GraphicContextStyle] )
+ *      graphic.setContextStyle ( {
  *          shadowColor: '',
  *          fillStyle: '',
  *          strokeStyle: '',
@@ -107,36 +107,36 @@ export const GraphicContextStyles = {
  *      } )
  *
  *      //
- *      CanvasGraphic.circle ( x, y, radius )
+ *      graphic.circle ( x, y, radius )
  *
  *      //
- *      CanvasGraphic.ellipse ( x, y, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise, closePath )
+ *      graphic.ellipse ( x, y, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise, closePath )
  *
  *      //
- *      CanvasGraphic.line ( x1, y1, x2, y2 )
- *      CanvasGraphic.line ( [Point], [Point] )
+ *      graphic.line ( x1, y1, x2, y2 )
+ *      graphic.line ( [Point], [Point] )
  *
  *      //
- *      CanvasGraphic.rect ( x, y, width, height )
+ *      graphic.rect ( x, y, width, height )
  *
  *      //
- *      CanvasGraphic.rectRound ( x, y, width, height, radius )
+ *      graphic.rectRound ( x, y, width, height, radius )
  *
  *      //
- *      CanvasGraphic.fillRect ( x, y, width, height )
+ *      graphic.fillRect ( x, y, width, height )
  *
  *      //
- *      CanvasGraphic.strokeRect ( x, y, width, height )
+ *      graphic.strokeRect ( x, y, width, height )
  *
  *      //
- *      CanvasGraphic.shape ( points )
- *      CanvasGraphic.shape ( points, closePath )
+ *      graphic.shape ( points )
+ *      graphic.shape ( points, closePath )
  *
  *      //
- *      CanvasGraphic.write ( text, x, y, styles, asStroke )
+ *      graphic.write ( text, x, y, styles, asStroke )
  *
  *      //
- *      CanvasGraphic.toString ()
+ *      graphic.toString ()
  *
  * </pre>
  *
@@ -441,6 +441,7 @@ function Graphic(parameters = {}) {
 
     /**
      *
+     * .clip({ x:0, y:0 }, function (graphic, context) {});
      * @param {function(Graphic: *, CanvasRenderingContext2D: context) | Object} that
      * @param {function(Graphic: *, CanvasRenderingContext2D: context)} callback
      * @returns {*&{clear(),draw()}}
