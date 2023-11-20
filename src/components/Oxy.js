@@ -32,10 +32,10 @@ function Oxy(target, onupdates) {
         set(target, prop, value) {
             target[prop] = value;
             if (onupdates[prop] && typeof onupdates[prop] === "function") {
-                onupdates[prop].call(onupdates[prop], prop, value);
+                onupdates[prop].call(target, prop, value);
             }
             if (onupdates && typeof onupdates.every === "function") {
-                onupdates.every.call(onupdates[prop], prop, value);
+                onupdates.every.call(target, prop, value);
             }
             return true;
         },
