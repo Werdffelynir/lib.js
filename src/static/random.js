@@ -128,5 +128,34 @@ export const randomItem = function (arr) {
 };
 random.item = randomItem;
 
+/**
+ *
+ * @param list
+ * @param n
+ * @returns {{}|*[]}
+ */
+export function randomUniqueItems(list, n) {
+    if (Array.isArray(list)) {
+        if (list.length < n) throw new Error('value "n" is less than required in list elements')
+        let arr = [];
+        let it = null;
+        while (arr.length < n) {
+            it = list[Math.floor(Math.random() * list.length)];
+            if (!arr.includes(it))
+                arr.push(it)
+        }
+        return arr;
+    } else {
+        if (Object.keys(list).length < n) throw new Error('value "n" is less than required in list elements')
+        let result = {};
+        let keys = Object.keys(list);
+        while (Object.keys(result).length < n) {
+            let key = keys[Math.floor(Math.random() * keys.length)];
+            if (!result[key])
+                result[key] = list[key];
+        }
+        return result;
+    }
+}
 
 export default random;
