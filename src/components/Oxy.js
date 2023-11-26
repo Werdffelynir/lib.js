@@ -20,22 +20,29 @@
  * </pre>
  *
  * @param target
- * @param onupdates
+ * @param {{ onSetter: function(prop: string|symbol, value:*), onGetter: function(prop: string|symbol), every: function }|*} options
  * @returns {boolean|*}
  * @constructor
  */
-function Oxy(target, onupdates) {
+function Oxy(target, options) {
     return new Proxy(target, {
         get(target, prop, receiver) {
+            if (options && typeof options.onGetter === "function") {
+                options.onGetter.call(target, prop, receiver);
+            }
             return target[prop];
         },
         set(target, prop, value) {
-            if (onupdates[prop] && typeof onupdates[prop] === "function") {
-                let resetValue = onupdates[prop].call(target, prop, value);
+            if (options[prop] && typeof options[prop] === "function") {
+                let resetValue = options[prop].call(target, prop, value);
                 if (resetValue !== undefined) value = resetValue;
             }
-            if (onupdates && typeof onupdates.every === "function") {
-                let resetValue = onupdates.every.call(target, prop, value);
+            if (options && typeof options.every === "function") {
+                let resetValue = options.every.call(target, prop, value);
+                if (resetValue !== undefined) value = resetValue;
+            }
+            if (options && typeof options.onSetter === "function") {
+                let resetValue = options.onSetter.call(target, prop, value);
                 if (resetValue !== undefined) value = resetValue;
             }
             target[prop] = value;

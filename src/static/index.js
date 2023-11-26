@@ -74,6 +74,7 @@ import dice from "./dice";
 import load from "./load";
 import download from "./download";
 import addStyle from "./addStyle";
+import str2element from "./str2element";
 
 
 const Static = {
@@ -88,6 +89,7 @@ const Static = {
     inject,
     str2node,
     str2fragment,
+    str2element,
     node2str,
     query,
     queryAll,

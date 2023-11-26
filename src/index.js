@@ -78,6 +78,7 @@ import cssInject from "./static/cssInject";
 import dice from "./static/dice";
 import load from "./static/load";
 import download from "./static/download";
+import str2element from "./static/str2element";
 
 import Arr from "./components/Arr";
 import Chain from "./components/Chain";
@@ -214,6 +215,7 @@ const LibJS = {
         dice: dice,
         load: load,
         download: download,
+        str2element: str2element,
     },
 };
 

@@ -1,5 +1,5 @@
 {
-  "name": "jslib",
+  "name": "libjs",
   "version": "0.1.0",
   "main": "webpack.config.js",
   "scripts": {
