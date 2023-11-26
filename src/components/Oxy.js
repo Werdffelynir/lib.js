@@ -30,13 +30,15 @@ function Oxy(target, onupdates) {
             return target[prop];
         },
         set(target, prop, value) {
-            target[prop] = value;
             if (onupdates[prop] && typeof onupdates[prop] === "function") {
-                onupdates[prop].call(target, prop, value);
+                let resetValue = onupdates[prop].call(target, prop, value);
+                if (resetValue !== undefined) value = resetValue;
             }
             if (onupdates && typeof onupdates.every === "function") {
-                onupdates.every.call(target, prop, value);
+                let resetValue = onupdates.every.call(target, prop, value);
+                if (resetValue !== undefined) value = resetValue;
             }
+            target[prop] = value;
             return true;
         },
         apply(target, thisArg, args) {
