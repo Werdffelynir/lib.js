@@ -360,6 +360,13 @@ class Tileset {
     }
 
 
+    /**
+     *
+     * @param sprites
+     * @param delay
+     * @param once
+     * @returns {{play(*=): void, stop(): void, loop(*): void, sprite: HTMLCanvasElement, getSprite(): HTMLCanvasElement}|HTMLCanvasElement}
+     */
     animate(sprites, delay = 500, once = true) {
         const canvas = document.createElement('canvas');
         const context = canvas.getContext('2d');
@@ -378,10 +385,14 @@ class Tileset {
             img.onload = () => {
                 context.clearRect(0, 0, canvas.width, canvas.height);
                 context.drawImage(img, 0, 0);
+                if (typeof loop_callback === 'function')
+                    loop_callback.call(context, canvas);
             }
 
             i++;
+
             if (i > imax) {
+                console.log('max')
                 i = 0;
                 if (once) {
                     paused = true;
