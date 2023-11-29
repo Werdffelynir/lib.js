@@ -376,6 +376,7 @@ class Tileset {
         const imax = sprites.length - 1;
         let paused = false;
         let loop_callback = false;
+        let loops = 0;
         let i = 0;
         const animation = () => {
             if (paused) return;
@@ -390,9 +391,8 @@ class Tileset {
             }
 
             i++;
-
             if (i > imax) {
-                console.log('max')
+                loops ++;
                 i = 0;
                 if (once) {
                     paused = true;
@@ -403,17 +403,23 @@ class Tileset {
         };
 
         return {
+            canvas: canvas,
             sprite: canvas,
             play(loop = false) {
-                // once = !loop;
                 paused = false;
                 animation();
             },
-            stop() {
-                paused = true;
+            stop() { paused = true; },
+            next() {
+                this.play();
+                this.stop();
             },
+            getCanvas() { return canvas; },
             getSprite() {
                 return canvas;
+            },
+            currentLootIteration() {
+                return loops;
             },
             loop(callback) {
                 loop_callback = callback;
