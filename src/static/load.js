@@ -36,9 +36,10 @@ async function load(sources) {
     return repository;
 }
 load.audio = async function (src) {
-    const audio = new Audio(src);
+    const audio = new Audio();
+    audio.src = src;
     return new Promise((resolve, reject) => {
-        audio.addEventListener("onloadeddata", () => {
+        audio.addEventListener("canplaythrough", () => {
             resolve(audio);
         });
         audio.addEventListener("error", () => {
