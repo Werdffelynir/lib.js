@@ -36,8 +36,7 @@ async function load(sources) {
     return repository;
 }
 load.audio = async function (src) {
-    const audio = new Audio();
-    audio.src = src;
+    const audio = new Audio(src);
     return new Promise((resolve, reject) => {
         audio.addEventListener("canplaythrough", () => {
             resolve(audio);
