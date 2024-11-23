@@ -75,6 +75,8 @@ import load from "./load";
 import download from "./download";
 import addStyle from "./addStyle";
 import str2element from "./str2element";
+import isMobileOrTable from "./isMobileOrTable";
+import isMobile from "./isMobile";
 
 
 const Static = {
@@ -157,6 +159,8 @@ const Static = {
     load,
     download,
     addStyle,
+    isMobileOrTable,
+    isMobile,
 };
 
 export default Static;

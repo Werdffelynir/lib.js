@@ -79,6 +79,8 @@ import dice from "./static/dice";
 import load from "./static/load";
 import download from "./static/download";
 import str2element from "./static/str2element";
+import isMobileOrTable from "./static/isMobileOrTable";
+import isMobile from "./static/isMobile";
 
 import Arr from "./components/Arr";
 import Chain from "./components/Chain";
@@ -216,6 +218,8 @@ const LibJS = {
         load: load,
         download: download,
         str2element: str2element,
+        isMobileOrTable: isMobileOrTable,
+        isMobile: isMobile,
     },
 };
 
